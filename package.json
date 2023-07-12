@@ -1,0 +1,16 @@
+{
+  "name": "my-cinema",
+  "private": true,
+  "description": "",
+  "keywords": ["rust", "typescript", "react", "microservices", "swagger", "playwright", "traefik"],
+  "author": "Jonathan Robic <hello@jonathanrobic.fr>",
+  "license": "MIT",
+  "engines": {
+    "node": "20.4.0"
+  },
+  "scripts": {
+    "moon": "moon"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
