@@ -19,3 +19,6 @@ vcs:
   manager: 'git'
   defaultBranch: 'main'
   provider: 'github'
+  hooks:
+    pre-commit:
+      - 'moon run :format :lint --affected --status staged'

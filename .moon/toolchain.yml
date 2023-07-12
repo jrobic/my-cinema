@@ -73,7 +73,9 @@ rust:
   version: '1.70.0'
 
   # List of Cargo binaries to install globally and make available to tasks.
-  bins: []
+  bins:
+    - bin: 'cargo-watch'
+      local: true
 
   # Sync the configured version above as a channel to the root `rust-toolchain.toml` config.
-  syncToolchainConfig: false
+  syncToolchainConfig: true
