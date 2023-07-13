@@ -1,0 +1,54 @@
+# Feedback
+- color: f48fb1
+  name: discussion
+  description: Feedback or questions
+
+- color: ad1457
+  name: rfc
+  description: Request for comments
+
+- color: ff4081
+  name: question
+  description: Questions
+
+# Improvements
+- color: 40c4ff
+  name: enhancement
+  description: New feature or request
+
+- color: 8d6e63
+  name: doc
+  description: Documentation changes
+
+# Bug fixes
+- color: ff1744
+  name: bug
+  description: Something isn't working
+
+# Additions
+- color: 448aff
+  name: feature
+  description: New feature or request
+
+# Collaboration
+- color: 64dd17
+  name: help wanted
+  description: Extra attention is needed
+
+- color: b2ff59
+  name: good first issue
+  description: Good for newcomers
+
+# Inactive GitHub labels
+- color: 000000
+  name: wontfix
+  description: This will not be worked on
+
+- color: 000000
+  name: invalid
+
+- color: 000000
+  name: duplicate
+
+- color: 000000
+  name: on hold
