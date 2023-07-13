@@ -34,7 +34,7 @@ fileGroups:
 # and the value is an object of task parameters.
 tasks:
   dev:
-    command: 'cargo-watch -x run'
+    command: 'cargo-watch -x run --ignore openapi.json'
     platform: 'system'
 
   format:
