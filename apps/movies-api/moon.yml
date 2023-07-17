@@ -4,7 +4,7 @@ project:
     name: 'Movies Api'
     description: 'movies api'
 
-language: 'rust'
+language: 'go'
 
 type: 'application'
 
@@ -13,3 +13,8 @@ env:
 tags:
   - 'api'
   - 'backend'
+
+tasks:
+  swagger:
+    command: 'swag init -d ./src/cmd/http,./src/ -o ./src/docs'
+    platform: 'system'

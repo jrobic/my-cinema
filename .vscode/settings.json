@@ -1,12 +1,5 @@
 {
-    "[rust]": {
-        "editor.formatOnSave": true
-    },
-    "rust-analyzer.check.command": "clippy",
-    "yaml.schemas": {
-        "https://raw.githubusercontent.com/ansible/ansible-lint/main/src/ansiblelint/schemas/ansible.json": "file:///Users/jonathanrobic/code/prod/jrobic/my-cinema/.moon/tasks/tasks.yml",
-        "https://json.schemastore.org/yamllint.json": "file:///Users/jonathanrobic/code/prod/jrobic/my-cinema/.moon/tasks/rust.yml"
-    },
-    "rust-analyzer.linkedProjects": ["./apps/movies-api/Cargo.toml"],
-    "rust-analyzer.showUnlinkedFileNotification": false
+    "makefile.extensionOutputFolder": "./.vscode",
+    "go.lintFlags": ["--config=revive.toml"],
+    "go.lintTool": "revive"
 }

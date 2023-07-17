@@ -9,48 +9,36 @@ on:
 name: Check and lint
 
 jobs:
-  check:
+  movies-api:
+    name: Movies Api (Go)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          profile: minimal
-          toolchain: stable
-          override: true
-      - uses: Swatinem/rust-cache@v2
-      - uses: actions-rs/cargo@v1
-        with:
-          command: check
-          args: --all-features --all-targets
+      - uses: actions/checkout@v3
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - uses: actions/setup-go@v4
         with:
-          profile: minimal
-          toolchain: stable
-          components: clippy
-          override: true
-      - uses: Swatinem/rust-cache@v2
-      - uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: --all-features --all-targets -- -D warnings
+          go-version-file: apps/movies-api/go.mod
+          cache-dependency-path: apps/movies-api/go.sum
 
-  fmt:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
+      - name: Install Deps
+        run: go mod download
+        shell: bash
+        working-directory: apps/movies-api
+
+      - name: Download swaggo
+        run: go install github.com/swaggo/swag/cmd/swag@latest
+
+      - name: Swagger init
+        run: make swagger
+        working-directory: apps/movies-api
+
+      - name: Lint
+        uses: docker://morphy/revive-action:v2
         with:
-          profile: minimal
-          toolchain: stable
-          components: rustfmt
-          override: true
-      - uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: --all -- --check
+          config: revive.toml
+          pattern: apps/movies-api/...
+
+      - name: Build
+        run: make movies-api
+        shell: bash
+        working-directory: apps/movies-api
