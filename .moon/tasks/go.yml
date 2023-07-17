@@ -15,7 +15,7 @@ $schema: 'https://moonrepo.dev/schemas/tasks.json'
 fileGroups:
   # List of configuration files located within the project root.
   configs:
-    - '*.{rs}'
+    - '*.go'
 
   # List of non-test source files.
   sources:
@@ -34,17 +34,17 @@ fileGroups:
 # and the value is an object of task parameters.
 tasks:
   dev:
-    command: 'cargo-watch -x run --ignore openapi.json'
+    command: 'air -c .air.toml'
     platform: 'system'
 
   format:
-    command: 'cargo fmt'
+    command: 'go fmt ./...'
     platform: 'system'
 
   lint:
-    command: 'cargo clippy'
+    command: 'revive -config ../../revive.toml ./...'
     platform: 'system'
 
   test:
-    command: 'cargo test'
+    command: 'go test -v ./...'
     platform: 'system'
