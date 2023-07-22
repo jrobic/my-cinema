@@ -26,3 +26,4 @@ bin
 *.todo
 *.env
 config.toml
+.data
