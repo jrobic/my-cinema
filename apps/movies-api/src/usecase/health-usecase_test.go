@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/jrobic/my-cinema/movies-api/src/domain"
+	"github.com/jrobic/my-cinema/movies-api/src/infra/repository"
 	"github.com/jrobic/my-cinema/movies-api/src/usecase"
 )
 
@@ -13,7 +14,8 @@ func TestHealth(t *testing.T) {
 			Status: "OK",
 		}
 
-		usecases := usecase.NewAppUsecases()
+		moviesRepo := repository.NewMoviesInMemoryRepository([]*domain.Movie{})
+		usecases := usecase.NewAppUsecases(moviesRepo)
 
 		got := usecases.Health()
 
