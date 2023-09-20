@@ -7,8 +7,14 @@ import (
 	"github.com/spf13/viper"
 )
 
+type DBMongoConfig struct {
+	URI    string `mapstructure:"uri"`
+	DBName string `mapstructure:"db_name"`
+}
+
 type Config struct {
-	Port string `mapstructure:"port"`
+	Port    string        `mapstructure:"port"`
+	DBMongo DBMongoConfig `mapstructure:"mongodb"`
 }
 
 func LoadConfig() (config Config, err error) {

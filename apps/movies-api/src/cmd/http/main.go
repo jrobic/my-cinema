@@ -3,9 +3,12 @@ package main
 import (
 	"log"
 	"os"
+	"time"
 
 	"github.com/jrobic/my-cinema/movies-api/src/config"
+	"github.com/jrobic/my-cinema/movies-api/src/infra/db"
 	httpserver "github.com/jrobic/my-cinema/movies-api/src/infra/http"
+	"github.com/jrobic/my-cinema/movies-api/src/infra/repository"
 	"github.com/jrobic/my-cinema/movies-api/src/infra/shutdown"
 )
 
@@ -35,9 +38,21 @@ func main() {
 		return
 	}
 
-	server, err := httpserver.NewMoviesAPIHttpServer()
-	defer server.Cleanup()
+	// Init Databases
+	mongoDB, err := db.NewDBMongo(cfg.DBMongo.URI, cfg.DBMongo.DBName, 10*time.Second)
+	defer mongoDB.Close()
+	if err != nil {
+		log.Printf("could not connect to mongodb: %v", err)
+		exitCode = 1
+		return
+	}
 
+	moviesRepo := repository.NewMoviesMongoRepository(mongoDB)
+	serverDeps := httpserver.MoviesAPIHttpServerDeps{
+		MoviesRepo: moviesRepo,
+	}
+	server, err := httpserver.NewMoviesAPIHttpServer(serverDeps)
+	defer server.Cleanup()
 	if err != nil {
 		log.Printf("could not create server: %v", err)
 		exitCode = 1
