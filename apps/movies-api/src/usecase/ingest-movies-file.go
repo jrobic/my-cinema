@@ -69,33 +69,3 @@ func (au *AppUsecases) IngestMoviesFile(file string) (IngestedMoviesFile, error)
 
 	return IngestedMoviesFile{Count: len(movies)}, nil
 }
-
-// Create as many "shufflings" as you can!
-// With input 'abc':
-// Your function should return ['abc','acb','bac','bca','cab','cba']
-func Permutations(s string) []string {
-	if len(s) == 1 {
-		return []string{s}
-	}
-
-	perms := []string{}
-	for i, c := range s {
-		// Remove the character at index i from the string
-		// and calculate all the permutations of the remaining characters
-		// (i.e. recursive call).
-		// Then, add the removed character to the front of each permutation.
-		// This will give us all the permutations that start with that character.
-		// Finally, append these permutations to our running list of permutations.
-		perms = append(perms, prependToAll(string(c), Permutations(s[:i]+s[i+1:]))...)
-	}
-
-	return perms
-}
-
-func prependToAll(c string, ss []string) []string {
-	for i, s := range ss {
-		ss[i] = c + s
-	}
-
-	return ss
-}
