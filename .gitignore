@@ -27,3 +27,9 @@ bin
 *.env
 config.toml
 .data
+coverage
+
+# rust
+/target
+*.profraw
+

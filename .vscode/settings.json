@@ -1,5 +1,10 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
     "go.lintFlags": ["--config=revive.toml"],
-    "go.lintTool": "revive"
+    "go.lintTool": "revive",
+    "rust-analyzer.linkedProjects": [
+        "./apps/movies-db/Cargo.toml",
+        "./apps/movies-db/Cargo.toml"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false
 }

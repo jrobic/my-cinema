@@ -1,0 +1,15 @@
+$schema: "https://moonrepo.dev/schemas/project.json"
+
+project:
+  name: "Movies DB"
+  description: "movies database api"
+
+language: "rust"
+
+type: "application"
+
+env:
+
+tags:
+  - "api"
+  - "backend"
